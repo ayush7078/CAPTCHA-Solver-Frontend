@@ -3,6 +3,7 @@ import axios from "axios";
 import { Card, Button, Input, Typography, Row, Col, Space, message } from "antd";
 import { FaArrowRight, FaTimesCircle, FaCheckCircle } from "react-icons/fa";
 
+
 const { Text } = Typography;
 const iconCoins = {
   earned: 15, penalties: 10, referAndEarn: 25 
@@ -14,11 +15,12 @@ const Captcha = () => {
   const [coins, setCoins] = useState(0);
  
   const intervalRef = useRef(null); // Ref to manage the interval
+console.log("process.env.REACT_APP_BACKEND_URL", process.env);
 
   // Function to fetch new CAPTCHA
   const fetchCaptcha = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/captcha");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/captcha`);
       setCaptcha(response.data.captchaText);
       setAnswer("");
       setTimer(15); // Reset the timer
@@ -47,7 +49,7 @@ const Captcha = () => {
 
   const fetchUserCoins = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/user/coins");
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/coins`);
       setCoins(response.data.coins);
     } catch (error) {
       console.error("Error fetching user's coin balance:", error);
@@ -74,11 +76,11 @@ const Captcha = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/captcha/verify", {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/captcha/verify`, {
         userAnswer: answer,
         captchaText: captcha,
       });
-      if (response.data.success) {
+       if (response.data.success) {
         console.log("response.data.coins", response.data.coins);
         
         setCoins(response.data.coins);
