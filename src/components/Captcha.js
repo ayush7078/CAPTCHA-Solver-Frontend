@@ -15,7 +15,6 @@ const Captcha = () => {
   const [coins, setCoins] = useState(0);
  
   const intervalRef = useRef(null); // Ref to manage the interval
-console.log("process.env.REACT_APP_BACKEND_URL", process.env);
 
   // Function to fetch new CAPTCHA
   const fetchCaptcha = useCallback(async () => {
