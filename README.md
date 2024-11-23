@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# CAPTCHA Solver with Coin Reward System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple React application that allows users to solve CAPTCHAs and earn coins. The application communicates with a backend server to fetch CAPTCHAs, verify user inputs, and provide a coin balance update. Users are rewarded with coins for successfully solving CAPTCHAs, with penalties for incorrect attempts. Additionally, a "Refer & Earn" feature is included for extra rewards.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Captcha Generation**: Fetches a new CAPTCHA for the user to solve.
+- **Coin Reward System**: Users earn coins for solving CAPTCHAs correctly, with penalties for incorrect answers.
+- **Timer**: A countdown timer is provided for solving the CAPTCHA.
+- **Refer & Earn**: A section for users to refer others and earn rewards.
+- **Coin Balance Display**: Displays the user's current coin balance.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: A JavaScript library for building user interfaces.
+- **Ant Design**: A popular React UI framework for styling and components.
+- **React Icons**: For incorporating icons in the application.
+- **Axios**: To make HTTP requests to the backend server.
+- **Environment Variables**: To store backend URLs and other sensitive data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup
 
-### `npm test`
+1. Clone the Repository
+- Clone this repository to your local machine:
+git clone https://github.com/ayush7078/CAPTCHA-Solver-Frontend.git
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install Dependencies
+- Navigate to the project directory and install the dependencies:
+cd CAPTCHA-Solver-Frontend
+npm install
 
-### `npm run build`
+3. Configure Environment Variables
+- Create a .env file in the root of the project and add the following environment variables:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+REACT_APP_BACKEND_URL= http://localhost:5000/api
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Replace your-backend-url with the actual URL of your backend API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Start the Development Server
+- To run the application in development mode, use the following command:
 
-### `npm run eject`
+npm start
+The app should now be available at http://localhost:3000.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Usage
+1. Solve CAPTCHA: Enter the CAPTCHA text provided in the box and click "Submit". You will earn coins for a correct answer, and penalties will be deducted for wrong answers.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Timer: You have 15 seconds to solve each CAPTCHA. Once the time runs out, you can skip the CAPTCHA and get a new one.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Refer & Earn: Use the "Refer & Earn" button to refer others and earn rewards.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Structure
+- src/components/Captcha.js: The component responsible for rendering the CAPTCHA and handling user interaction.
+- src/App.js: The main app file that contains the layout and includes the Captcha component.
+public/index.html: The HTML template for the React application.
+- src/index.js: The entry point for the React application.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# API Endpoints
+This application communicates with the following backend API endpoints:
 
-### Code Splitting
+1. GET /captcha: Fetches a new CAPTCHA.
+2. GET /user/coins: Fetches the user's current coin balance.
+3. POST /captcha/verify: Verifies the user's answer to the CAPTCHA.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+# License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Acknowledgements
+1. Ant Design for providing the UI components.
+2. React for being an amazing library.
+3. React Icons for providing easy-to-use icons.
+4. Axios for making HTTP requests simple.
