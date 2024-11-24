@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useCallback, useRef} from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
-import { Card, Button, Input, Typography, Row, Col, Space, message } from "antd";
+import { Typography, Input, Button} from "antd";
+import { DoubleRightOutlined } from '@ant-design/icons';
+
 import { FaArrowRight, FaTimesCircle, FaCheckCircle } from "react-icons/fa";
-
-
+import "./Captcha.css"
 const { Text } = Typography;
-const iconCoins = {
-  earned: 15, penalties: 10, referAndEarn: 25 
-}
+
 const Captcha = () => {
   const [captcha, setCaptcha] = useState("");
   const [answer, setAnswer] = useState("");
   const [timer, setTimer] = useState(15);
   const [coins, setCoins] = useState(0);
- 
+
   const intervalRef = useRef(null); // Ref to manage the interval
 
   // Function to fetch new CAPTCHA
@@ -57,20 +56,19 @@ const Captcha = () => {
 
   // Initial load of CAPTCHA and user's coin balance
   useEffect(() => {
- 
     fetchUserCoins();
     fetchCaptcha(); // Fetch CAPTCHA once on mount
   }, [fetchCaptcha]);
 
   const handleSubmit = async () => {
     if (timer === 0) {
-      message.error("Time's up! You cannot submit this CAPTCHA.");
+      alert("Time's up! You cannot submit this CAPTCHA.");
       fetchCaptcha(); // Load a new CAPTCHA
       return;
     }
 
     if (!answer.trim()) {
-      message.warning("Please enter the CAPTCHA!");
+      alert("Please enter the CAPTCHA!");
       return;
     }
 
@@ -79,16 +77,7 @@ const Captcha = () => {
         userAnswer: answer,
         captchaText: captcha,
       });
-       if (response.data.success) {
-        console.log("response.data.coins", response.data.coins);
-        
-        setCoins(response.data.coins);
-      } else {
-        console.log("response.data.coins", response.data.coins);
-      
-        setCoins(response.data.coins);
-      }
-
+      setCoins(response.data.coins);
       fetchCaptcha(); // Load a new CAPTCHA after submission
     } catch (error) {
       console.error("Error verifying CAPTCHA:", error);
@@ -100,54 +89,16 @@ const Captcha = () => {
     fetchCaptcha(); // Load a new CAPTCHA
   };
 
-
   return (
-    <Card bordered style={{ maxWidth: 450, margin: "auto", textAlign: "center" }}>
-      <Space direction="vertical" size="large" style={{ width: "100%" }}>
-        
-        {/* CAPTCHA Display */}
-        <div>
-          <Text
-            strong
-            style={{
-              fontSize: "3rem",
-              fontWeight : "bold",
-              color: "black",
-              background: "white",
-              border : "3px solid whitesmoke",
-              padding: "16px 16px",
-              display: "inline-block",
-              borderRadius: 10,
-              width : "300px"
-            }}
-          >
-            {captcha}
-          </Text>
-        
+    <div className="captcha-container">
+      <div className="captcha-card">
+        <div className="captcha-display">
+        <span class="rotated-text">{captcha}</span></div>
+        <div className="captcha-info">
+          <span className="captcha-note">Special Alpha Numeric Case Sensitive</span>
+          <div className="captcha-timer">{timer}s</div>
         </div>
-
-        <Row gutter={16} style={{ marginTop: "0px" }}>
-          <Col span={19} style={{ textAlign: "left" }}>
-            <Text strong style={{ color: "Red" }}>Special Alpha Numeric Case Sensitive</Text>
-          </Col>
-          <Col span={5} style={{ textAlign: "center" }}>
-            <div
-              style={{
-                backgroundColor: "darkblue",
-                color: "white",
-                padding: "0px 0px",
-                borderRadius: "25px",
-                fontSize: "1rem"
-              }}
-            >
-              {timer}s
-            </div>
-          </Col>
-        </Row>
-
-        <Row gutter={16} style={{ marginTop: "0px", width: "480px" , display: "flex", alignItems: "center"}}>
-          <Col span={20}>
-            <div
+        <div
               style={{
                 display: "flex",
                 border: "3px solid #d9d9d9",
@@ -155,6 +106,7 @@ const Captcha = () => {
                 padding: "5px",
                 justifyContent: "space-between",
                 alignItems: "center",
+                marginBottom : "10px"
               }}
             >
               <Input
@@ -182,159 +134,46 @@ const Captcha = () => {
                 Skip
               </Button>
             </div>
-          </Col>
-        </Row>
 
-       {/* Submit Button and Refer & Earn Circle Section */}
-<Row gutter={16} style={{ margin : 0,  display: "flex", alignItems: "center" }}>
-  {/* Centered Submit Button */}
-  <Col span={18} style={{ display: "flex", justifyContent: "center" }}>
-    <Button
-      type="primary"
-      onClick={handleSubmit}
-      block
-      style={{
-        backgroundColor: "darkblue",
-        color: "white",
-        borderRadius: "25px",
-        width: "30%", 
-        marginLeft : "70px"
-      }}
-    >
-      Submit
-    </Button>
-  </Col>
+        <div className="actions">
+          <button onClick={handleSubmit} className="submit-btn">
+            Submit
+          </button>
+          <div className="refer-circle">
+            <span>REFER</span>
+            <span>&</span>
+            <span style={{color : "red"}}>EARN</span>
+          </div>
+        </div>
+        <div className="user-coins">
+          User Coins Balance: <span>{coins}</span>
+        </div>
+        <div className="icon-section">
+          <div className="icon-item">
+          <DoubleRightOutlined style={{ fontWeight : "bold", color: "#FFF", fontSize: "15px" , backgroundColor: "#1890ff", borderRadius: "50%", padding : "3px" }} />
+          <span style={{marginLeft : "5px"}}>15</span>
+          </div>
+          <div className="icon-item">
+            <FaTimesCircle style={{color: "red", fontSize : "20px"}} />
+            <span style={{marginLeft : "5px"}}>10</span>
+          </div>
+          <div className="icon-item">
+            <FaCheckCircle style={ {color: "green", fontSize : "20px"}} />
+            <span style={{marginLeft : "5px"}}>25</span>
+          </div>
+        </div>
+        <button className="refer-btn">Refer & Earn</button>
+        <div style={{ marginTop: 0, textAlign: "left" }}>
 
-
-
-{/* Refer & Earn Circle Section */}
-<Col span={6} style={{ display: "flex", justifyContent: "flex-end" }}>
-  <div
-    style={{
-      backgroundColor: "darkblue",
-      color: "white",
-      borderRadius: "60%", 
-      padding: "8px 15px", 
-      display: "flex",
-      flexDirection: "column", 
-      alignItems: "center", 
-      justifyContent: "center",
-    }}
-  >
-    <Text
-      style={{
-        textTransform: "uppercase",
-        display: "block",
-        textAlign: "center",
-        margin: 0,
-        lineHeight: "1", // Ensures no extra margin between lines
-      }}
-    >
-      <span style={{ color: "white", fontSize: "10px", display : "flex", justifyContent : "center", alignItems : "center" }}>Refer</span>
-      <span style={{ color: "white", fontSize: "10px" , display : "flex", justifyContent : "center", alignItems : "center"}}>&</span>
-      <span style={{ color: "red", fontSize: "10px",  display : "flex", justifyContent : "center", alignItems : "center" }}>Earn</span>
-    </Text>
-  </div>
-</Col>
-
-
-</Row>
-  {/* Total Coin Balance Display */}
-  <Row gutter={16} justify="center" style={{ marginTop: "0px", padding : 0 }}>
-          <Col>
-            <div
-              style={{
-                border: "2px solid whitesmoke",
-                borderRadius: "8px",
-                padding: "0px",
-                textAlign: "center",
-                boxShadow: "0 2px 8px #fff",
-                width: "180px",
-              }}
-            >
-              <Text strong>
-                User Coins Balance:{" "}
-                <span style={{ color: "#1890ff", fontSize: "1.2rem" }}>{coins}</span>
-              </Text>
-            </div>
-          </Col>
-        </Row>
-
-        <Row gutter={16} justify="center" style={{ marginTop: "0px" }}>
-          <Col>
-            <div
-              style={{
-                border: "2px solid whitesmoke",
-                borderRadius: "8px",
-                padding: "6px",
-                textAlign: "center",
-                width: "80px",
-              }}
-            >
-              <Text strong>
-                <FaArrowRight style={{ color: "#1890ff", fontSize: "1.0rem", marginRight: "5px" }} />
-                {iconCoins.earned}
-              </Text>
-            </div>
-          </Col>
-          <Col>
-            <div
-              style={{
-                border: "2px solid whitesmoke",
-                borderRadius: "8px",
-                padding: "6px",
-                textAlign: "center",
-                width: "80px",
-              }}
-            >
-              <Text strong>
-                <FaTimesCircle style={{ color: "red", fontSize: "1.0rem", marginRight: "5px" }} />
-                {iconCoins.penalties}
-              </Text>
-            </div>
-          </Col>
-          <Col>
-            <div
-              style={{
-                border: "2px solid whitesmoke",
-                borderRadius: "8px",
-                padding: "6px",
-                textAlign: "center",
-                width: "80px",
-              }}
-            >
-              <Text strong>
-                <FaCheckCircle style={{ color: "green", fontSize: "1.0rem", marginRight: "5px" }} />
-                {iconCoins.referAndEarn}
-              </Text>
-            </div>
-          </Col>
-        </Row>
-        <div style={{ textAlign: "center", marginTop: "8px" }}>
-  <Button
-    type="primary"
-    style={{
-      backgroundColor: "darkblue",
-      color: "white",
-      borderRadius: "25px",
-      padding: "10px 20px",
-      fontSize: "1rem",
-      width: "180px",
-    }}
-  >
-    Refer & Earn
-  </Button>
-</div>
-        <div style={{ marginTop: 4, textAlign: "left" }}>
-          <Text type="secondary">
+        <Text type="secondary">
             <p>* All words are case sensitive.</p>
             <p>* Calculative Captchas must be solved.</p>
             <p>* Length of Captchas will be between 6 to 12 characters.</p>
             <p>* The result can also be negative numbers, e.g., (5 - 8 = -3).</p>
           </Text>
-        </div>
-      </Space>
-    </Card>
+</div>
+      </div>
+    </div>
   );
 };
 

@@ -11,7 +11,7 @@ const App = () => {
       <Header style={{ background: "#1890ff", textAlign: "center" }}>
         <h3 style={{ color: "#fff", margin: 0, fontWeight : "bold" }}>CAPTCHA Solver App</h3>
       </Header>
-      <Content style={{ padding: 10 }}>
+      <Content style={{ padding: 0 }}>
         <Captcha />
       </Content>
     </Layout>

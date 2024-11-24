@@ -1,0 +1,213 @@
+/* Base Styles (Desktop) */
+.captcha-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  background: #f5f5f5;
+  margin-top: 10px;
+}
+
+.captcha-card {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+  padding-top: 10px !important;
+}
+
+.captcha-display {
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: white;
+  height: 80px;
+  overflow-wrap: break-word;
+}
+
+.rotated-text {
+  padding-bottom: 0px !important;
+  padding-top: 5px;
+  display: inline-block;
+  transform: rotate(-7deg);
+  transform-origin: center;
+}
+
+.captcha-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.captcha-note {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.captcha-timer {
+  background: darkblue;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.captcha-input {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.captcha-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.skip-btn {
+  background: darkblue;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.submit-btn {
+  background: darkblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 0px;
+}
+
+.refer-circle {
+  background: darkblue;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 80px;
+  justify-content: center;
+}
+
+.user-coins {
+  margin-bottom: 10px;
+}
+
+.icon-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 70px;
+}
+
+.refer-btn {
+  background: darkblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.notes {
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0em !important;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .captcha-card {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 20px;
+  }
+
+  .captcha-display {
+    font-size: 1.8rem; /* Scale down text size */
+    height: auto; /* Adjust height for better fit */
+    word-break: break-word;
+  }
+
+  .captcha-timer {
+    font-size: 0.8rem; /* Scale down timer text */
+    padding: 4px 8px;
+  }
+
+  .captcha-input input {
+    padding: 6px; /* Reduce input padding */
+    margin-right: 5px;
+    font-size: 1rem; /* Adjust font size */
+  }
+
+  .skip-btn {
+    padding: 6px 12px; /* Adjust button size */
+    font-size: 0.9rem;
+  }
+
+  .actions {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Add spacing between elements */
+  }
+
+  .submit-btn {
+    width: 100%; /* Full-width button for smaller screens */
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .refer-circle {
+    margin-left: 0; /* Center circle */
+    margin-top: 10px;
+  }
+
+  .icon-section {
+    flex-wrap: wrap; /* Allow icons to wrap */
+    gap: 10px;
+  }
+
+  .icon-item {
+    width: 60px; /* Adjust size of icons */
+    padding: 8px;
+  }
+
+  .refer-btn {
+    width: 100%; /* Full-width button for mobile */
+    padding: 8px;
+    font-size: 1rem;
+  }
+}
