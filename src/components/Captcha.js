@@ -3,7 +3,7 @@ import axios from "axios";
 import { Typography, Input, Button} from "antd";
 import { DoubleRightOutlined } from '@ant-design/icons';
 
-import { FaArrowRight, FaTimesCircle, FaCheckCircle } from "react-icons/fa";
+import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
 import "./Captcha.css"
 const { Text } = Typography;
 
