@@ -118,7 +118,7 @@ const Captcha = () => {
                   border: "none",
                   padding: "8px 0px",
                   flex: 1,
-                  borderRadius: "8px 8px 8px 8px", // rounded left corners
+                  borderRadius: "8px 8px 8px 8px", 
                 }}
               />
               <Button

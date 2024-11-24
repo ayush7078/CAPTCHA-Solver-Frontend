@@ -1,4 +1,3 @@
-/* Base Styles (Desktop) */
 .captcha-container {
   display: flex;
   justify-content: center;
@@ -153,60 +152,60 @@ p {
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
   .captcha-card {
-    width: 90%; /* Adjust width for smaller screens */
+    width: 90%; 
     padding: 20px;
   }
 
   .captcha-display {
-    font-size: 1.8rem; /* Scale down text size */
-    height: auto; /* Adjust height for better fit */
+    font-size: 1.8rem; 
+    height: auto; 
     word-break: break-word;
   }
 
   .captcha-timer {
-    font-size: 0.8rem; /* Scale down timer text */
+    font-size: 0.8rem; 
     padding: 4px 8px;
   }
 
   .captcha-input input {
-    padding: 6px; /* Reduce input padding */
+    padding: 6px;
     margin-right: 5px;
-    font-size: 1rem; /* Adjust font size */
+    font-size: 1rem; 
   }
 
   .skip-btn {
-    padding: 6px 12px; /* Adjust button size */
+    padding: 6px 12px; 
     font-size: 0.9rem;
   }
 
   .actions {
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px; /* Add spacing between elements */
+    flex-direction: column; 
+    gap: 10px; 
   }
 
   .submit-btn {
-    width: 100%; /* Full-width button for smaller screens */
+    width: 100%; 
     font-size: 1rem;
     padding: 10px;
   }
 
   .refer-circle {
-    margin-left: 0; /* Center circle */
+    margin-left: 0; 
     margin-top: 10px;
   }
 
   .icon-section {
-    flex-wrap: wrap; /* Allow icons to wrap */
+    flex-wrap: wrap; 
     gap: 10px;
   }
 
   .icon-item {
-    width: 60px; /* Adjust size of icons */
+    width: 60px; 
     padding: 8px;
   }
 
   .refer-btn {
-    width: 100%; /* Full-width button for mobile */
+    width: 100%; 
     padding: 8px;
     font-size: 1rem;
   }
