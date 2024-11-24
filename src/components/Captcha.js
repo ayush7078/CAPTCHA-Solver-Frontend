@@ -5,6 +5,7 @@ import { DoubleRightOutlined } from '@ant-design/icons';
 
 import { FaTimesCircle, FaCheckCircle } from "react-icons/fa";
 import "./Captcha.css"
+
 const { Text } = Typography;
 
 const Captcha = () => {
